@@ -66,13 +66,31 @@
   # Phone Sync (KDE Connect) Firewall Ports
   programs.kdeconnect.enable = true;
 
-  # User Account Configuration
-  users.users.parents = {
+  # User Accounts Configuration
+  # 1. Admin Account (Has root/sudo access)
+  users.users.admin = {
     isNormalUser = true;
-    description = "Parents";
-    extraGroups = [ "networkmanager" "wheel" "lp" "scanner" ];
+    description = "System Administrator";
+    extraGroups = [ "wheel" "networkmanager" "lp" "scanner" ];
   };
 
+  # 2. First Standard Account (No root access)
+  users.users.first = {
+    isNormalUser = true;
+    description = "First User";
+    extraGroups = [ "networkmanager" ]; # Omit 'wheel' so this user cannot run sudo
+  };
+
+  # 3. Second Standard Account (No root access)
+  users.users.second = {
+    isNormalUser = true;
+    description = "Second User";
+    extraGroups = [ "networkmanager" ]; # Omit 'wheel' so this user cannot run sudo
+  };
+
+  # Enforce standard sudo security
+  security.sudo.enable = true;
+  security.sudo.wheelNeedsPassword = true;
   # Allow Unfree Packages
   nixpkgs.config.allowUnfree = true;
 
