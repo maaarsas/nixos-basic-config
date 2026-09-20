@@ -2,7 +2,8 @@
 
 {
   imports = [
-    ./hardware-configuration.nix
+    # Absolute local path to the file generated on their machine
+    /etc/nixos/hardware-configuration.nix
   ];
 
   # Bootloader setup (UEFI)
@@ -103,6 +104,10 @@
     hunspell
     hunspellDicts.lt_LT
   ];
+
+  environment.shellAliases = {
+    update-system = "sudo nixos-rebuild switch --flake github:maaarsas/nixos-basic-config"
+  };
 
   # Font Packages with Lithuanian Glyph Support
   fonts.packages = with pkgs; [
