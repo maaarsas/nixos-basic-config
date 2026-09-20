@@ -34,7 +34,7 @@
   # Configure Keyboard Layout (Lithuanian + US fallback)
   # Toggle between languages using Alt + Shift
   services.xserver.xkb = {
-    layout = "lt,us";
+    layout = "lt";
     options = "grp:alt_shift_toggle";
   };
 
@@ -91,11 +91,22 @@
   # Enforce standard sudo security
   security.sudo.enable = true;
   security.sudo.wheelNeedsPassword = true;
+
   # Allow Unfree Packages
   nixpkgs.config.allowUnfree = true;
 
   # Enable Flakes & Modern Nix Command Line
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+# Automatically run garbage collection weekly
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d"; # Keeps 2 weeks of generations for safe rollbacks
+  };
+
+  # Automatically optimize the store by hard-linking duplicate files
+  nix.settings.auto-optimise-store = true;
 
   # Auto-Upgrade System
   system.autoUpgrade = {
