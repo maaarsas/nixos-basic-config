@@ -99,10 +99,6 @@
     vlc                      # Video player
     kdePackages.gwenview     # Image viewer
     kdePackages.print-manager # Printer setup tool
-
-    # Lithuanian Spellcheck Dictionary for LibreOffice & Firefox
-    hunspell
-    hunspellDicts.lt_LT
   ];
 
   environment.shellAliases = {
