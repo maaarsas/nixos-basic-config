@@ -106,7 +106,7 @@
   ];
 
   environment.shellAliases = {
-    update-system = "sudo nixos-rebuild switch --flake github:maaarsas/nixos-basic-config"
+    update-system = "sudo nixos-rebuild switch --flake github:maaarsas/nixos-basic-config";
   };
 
   # Font Packages with Lithuanian Glyph Support
